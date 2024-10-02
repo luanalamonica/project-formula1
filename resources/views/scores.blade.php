@@ -12,7 +12,8 @@
             padding: 0;
             position: relative;
             overflow-x: hidden;
-            background-color: #555;       
+            background-color: #555;     
+            background: linear-gradient(135deg, #00ff00 0%, #2e2e2e 50%, #b0b0b0 100%);
         } 
 
         header {
@@ -204,6 +205,26 @@
             margin-top: 40px;
             margin-bottom: 20px;
             font-size: 3em;
+        }   
+
+        .drivers-title {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 3em;
+        }   
+
+        .builders-title, .drivers-title, .builders-tabela-container, .drivers-tabela-container {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .builders-title.visible, .drivers-title.visible, 
+        .builders-tabela-container.visible, .drivers-tabela-container.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
     </style>
@@ -220,6 +241,9 @@
                     </div>
                     <div class="links">
                         <ul>
+                            <li><a href="{{ url('/') }}">Home</a></li>
+                        </ul>
+                        <ul>
                             <li><a href="{{ url('/news') }}">News</a></li>
                         </ul>
                         <ul>
@@ -235,13 +259,13 @@
                 with the scores of <br> 
                 constructors and <br> 
                 drivers from recent <br> 
-                seasons.
+                seasons
         </section>
     </main>
 
     <h1 class="builders-title">Builders Table</h1>
 
-    <section class="tabelas-container">       
+    <section class="builders-tabela-container tabelas-container">       
             <table>
                 <caption>Season 2024</caption>
                 <thead>
@@ -432,9 +456,9 @@
 
     <!--------------------------------------------------------------------------------------------------------------------->
     
-    <h1 class="builders-title">Drivers Table</h1>
+    <h1 class="drivers-title">Drivers Table</h1>
 
-    <section class="tabelas-container">       
+    <section class="drivers-tabela-container tabelas-container">       
             <table>
                 <caption>Season 2024</caption>
                 <thead>
@@ -803,6 +827,31 @@
                 </tbody>
             </table>
     </section>
+    <script>
+        // Função que adiciona a classe 'visible' aos elementos visíveis na tela
+        function handleScrollAnimation(element) {
+            var position = element.getBoundingClientRect().top;
+            var screenPosition = window.innerHeight / 1.2;
 
+            if (position < screenPosition) {
+                element.classList.add('visible');
+            }
+        }
+
+        // Quando a página for rolada
+        window.addEventListener('scroll', function() {
+            // Seleciona os títulos e tabelas
+            var buildersTitle = document.querySelector('.builders-title');
+            var buildersTable = document.querySelector('.builders-tabela-container');
+            var driversTitle = document.querySelector('.drivers-title');
+            var driversTable = document.querySelector('.drivers-tabela-container');
+
+            // Aplica a animação ao título e à tabela
+            handleScrollAnimation(buildersTitle);
+            handleScrollAnimation(buildersTable);
+            handleScrollAnimation(driversTitle);
+            handleScrollAnimation(driversTable);
+        });
+    </script>
 </body>
 </html>

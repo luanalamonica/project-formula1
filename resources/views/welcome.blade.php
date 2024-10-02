@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Formula 1</title>
     <style>
-       
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             position: relative;
             overflow-x: hidden;
+            background-color: #1e1e1e;
         } 
 
         header {
@@ -31,7 +31,7 @@
         }
 
         h1{
-                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
         .logo {
@@ -155,6 +155,14 @@
             padding: 20px;
             width: 300px; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .up-next article.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .up-next article h3 {
@@ -165,6 +173,21 @@
             color: #ddd; 
             margin: 0;
         }
+
+        .up-next .articles a {
+            color: white; /* Cor branca para o link */
+            text-decoration: none; /* Remove o sublinhado */
+            transition: color 0.3s ease;
+        }
+
+        .up-next .articles a:hover {
+            color: #ccc; /* Cor ao passar o mouse */
+        }
+
+        .up-next .articles p {
+            color: #4F4F4F;
+        }
+
     </style>
 </head>
 <body>
@@ -178,6 +201,9 @@
                         </a> 
                     </div>
                     <div class="links">
+                        <ul>
+                            <li><a href="{{ url('/') }}">Home</a></li>
+                        </ul>
 
                         <ul>
                             <li><a href="{{ url('/news') }}">News</a></li>
@@ -191,9 +217,9 @@
                     </div>
                 </nav>
             </header>
-            <h1>New RedBull wind tunnel <br>
-            'critical' to future  <br>
-            performance.</h1>
+            <h1>New RedBull wind<br>
+            tunnel 'critical' to<br>
+            future performance</h1>
         </section>
 
         <section class="up-next">
@@ -201,18 +227,46 @@
             <div class="articles">
                 <?php
                 $news = [
-                    ["title" => "What To Watch For in the 2019 Hungarian Grand Prix", "date" => "16 August 2019"],
-                    ["title" => "Hamilton wants harder championship fight from Leclerc and Verstappen", "date" => "12 August 2019"]
-                    
+                    ["title" => "Wolff shuts down further talk of Verstappen joining Mercedes as he insists team won't be ‘flirting outside’", "date" => "04 September 2024"],
+                    ["title" => "‘I’m not very good’ – Hamilton ‘furious’ with himself as he claims he should have taken pole for Italian GP", "date" => "31 August 2024"],
+                    ["title" => "HIGHLIGHTS: Catch the action from FP1 at Monza as Verstappen goes fastest while rookie Antonelli crashes out", "date" => "30 August 2024"],
+                    ["title" => "‘I keep repeating myself’ – Leclerc left frustrated by Ferrari’s deficit to rivals during low-key Dutch GP qualifying", "date" => "24 August 2024"],
+                    ["title" => "Verstappen expecting his toughest Dutch Grand Prix yet as he assesses challenge posed by ‘many more teams’", "date" => "22 August 2024"]
                 ];
-                foreach ($news as $article): ?>
+
+                function slugify($text) {
+                    return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $text)));
+                }
+
+                foreach ($news as $article):
+                    $slug = slugify($article['title']); ?>
                     <article>
-                        <h3><?php echo $article['title']; ?></h3>
+                        <h3>
+                            <a href="/news?article=<?php echo urlencode($slug); ?>">
+                                <?php echo $article['title']; ?>
+                            </a>
+                        </h3>
                         <p><?php echo $article['date']; ?></p>
                     </article>
                 <?php endforeach; ?>
             </div>
         </section>
+
     </main>
+
+    <script>
+        const articles = document.querySelectorAll('.up-next article');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        articles.forEach(article => {
+            observer.observe(article);
+        });
+    </script>
 </body>
 </html>

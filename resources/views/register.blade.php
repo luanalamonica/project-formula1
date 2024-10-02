@@ -120,7 +120,7 @@
         <h1>Register</h1>
         <input type="email" placeholder="E-mail">
         <input type="password" placeholder="Password">
-        <input type="date" placeholder="Birthdate">
+        <input type="tel" placeholder="Telephone">
         <button>Enter</button>
         <div class="footer-links">
              <a href="{{ url('/login') }}">Sign In</a>
