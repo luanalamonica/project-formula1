@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -117,14 +118,18 @@
     </header>
 
     <div class="login-container">
-        <h1>Register</h1>
-        <input type="email" placeholder="E-mail">
-        <input type="password" placeholder="Password">
-        <input type="tel" placeholder="Telephone">
-        <button>Enter</button>
-        <div class="footer-links">
-             <a href="{{ url('/login') }}">Sign In</a>
-        </div>
+        <form action="{{ route('register') }}" method="POST">
+            @csrf
+            <h1>Register</h1>
+            <input name="email" type="text" placeholder="E-mail">
+            <input name="password" type="password" placeholder="Password">
+            <input name="password_confirmation" type="password" placeholder="Confirmar senha">
+            <input name="telefone" type="text" placeholder="Telephone">
+            <button type="submit">Enter</button>
+            <div class="footer-links">
+                <a href="{{ url('/login') }}">Sign In</a>
+            </div>
+        </form>
     </div>
 </body>
 </html>

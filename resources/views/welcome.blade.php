@@ -202,7 +202,7 @@
                     </div>
                     <div class="links">
                         <ul>
-                            <li><a href="{{ url('/') }}">Home</a></li>
+                            <li><a href="{{ url('/') }}">Dashboard</a></li>
                         </ul>
 
                         <ul>
