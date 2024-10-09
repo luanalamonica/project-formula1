@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -27,17 +28,27 @@ Route::middleware('auth')->group(function () {
         return view('welcome');
     });
     
-   
-    
-   
-    
     Route::get('/scores', function () { 
         return view('scores');
     });
     
     Route::get('/news', function () {  
         return view('news');
+    })->name('news'); 
+
+    Route::get('/create_news', function () {  
+        return view('create_news');
     });
+
+    Route::get('/create_scores_drivers', function () {  
+        return view('create_scores_drivers');
+    });
+
+    Route::get('/create_scores_team', function () {  
+        return view('create_scores_team');
+    });
+
+    Route::post('/create_news', [NewsController::class, 'salvarNoticia'])->name('create_news');
 });
 
 Route::get('/register', function () {  
