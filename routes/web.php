@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\EquipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/create_scores_team', [TeamController::class, 'salvarEquipe'])->name('create_scores_team');
 
     Route::get('/scores', [DriverController::class, 'buscar']) ->name('scores.index');
+
+    Route::get('/equipes/{id}/edit', [EquipeController::class, 'edit'])->name('equipes.edit');
+    Route::put('/equipes/{id}', [EquipeController::class, 'update'])->name('equipes.update');
+    Route::delete('/equipes/{id}', [EquipeController::class, 'destroy'])->name('equipes.destroy');  
+
 });
 
 Route::get('/register', function () {  

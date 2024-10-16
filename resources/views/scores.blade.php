@@ -53,10 +53,10 @@
                 </nav>
             </header>
             <h1>Stay up to date <br>
-                with the scores of <br>
-                constructors and <br>
-                drivers from recent <br>
-                seasons
+                with the scores <br>
+                of teams and <br>
+                drivers from <br>
+                recent seasons
         </section>
     </main>
 
@@ -92,6 +92,18 @@
                 <td>{{ $equipe->posicao }}</td>
                 <td>{{ $equipe->nome }}</td>
                 <td>{{ $equipe->pontuacao }}</td>
+                <td>
+                    <!-- Botão Editar -->
+                    <a href="{{ route('equipes.edit', $equipe->id) }}" class="btn btn-primary">Editar</a>
+
+                    <!-- Botão Excluir -->
+                    <form action="{{ route('equipes.destroy', $equipe->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</button>
+                    </form>
+                    
+                </td>
             </tr>
 
             @php
