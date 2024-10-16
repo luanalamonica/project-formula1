@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\DriverController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/scores', function () { 
         return view('scores');
-    });
+    })->name('scores');
     
     Route::get('/news', function () {  
         return view('news');
@@ -49,6 +51,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::post('/create_news', [NewsController::class, 'salvarNoticia'])->name('create_news');
+
+    Route::post('/create_scores_drivers', [DriverController::class, 'salvarPiloto'])->name('create_scores_drivers');
+
+    Route::post('/create_scores_team', [TeamController::class, 'salvarEquipe'])->name('create_scores_team');
+
+    Route::get('/scores', [DriverController::class, 'buscar']) ->name('scores.index');
 });
 
 Route::get('/register', function () {  

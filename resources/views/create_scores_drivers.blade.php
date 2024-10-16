@@ -12,31 +12,33 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1><i class="material-icons text-danger bg-primary rounded me-2" style="font-size: 36px; color: white !important"></i>Add Score Drives</h1>
+            <h1><i class="material-icons text-danger bg-primary rounded me-2" style="font-size: 36px; color: white !important"></i>Add Score Drivers</h1>
         </div>
         <hr style="background-color: #FF6900 !important;">
 
+    <form action="{{ route('create_scores_drivers') }}" method="POST">
+        @csrf
         <div class="form-group row">
             <div class="col-6">
                 <label class="mb-2">Temporada da Piloto:</label>
-                <input type="text" class="form-control" placeholder="Ano da temporada">
+                <input type="text" class="form-control" placeholder="Ano da temporada" name="temporada">
             </div>
 
             <div class="col-6">
                 <label class="mb-2">Posição do Piloto:</label>
-                <input type="text" class="form-control" placeholder="Posição">
+                <input type="text" class="form-control" placeholder="Posição" name="posicao">
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-6">
                 <label class="mb-2">Nome do Piloto:</label>
-                <input type="text" class="form-control" placeholder="Nome e Sobrenome">
+                <input type="text" class="form-control" placeholder="Nome e Sobrenome" name="nome">
             </div>
 
             <div class="col-6">
                 <label class="mb-2">Pontuação do piloto:</label>
-                <input type="text" class="form-control" placeholder="Pontuação">
+                <input type="text" class="form-control" placeholder="Pontuação" name="pontuacao">
             </div>
         </div>
 
@@ -49,6 +51,7 @@
                 <button class="btn btn-primary w-100" style="background-color: #cc0000 !important; border:none !important;">Salvar Piloto</button>
             </div>
         </div>
+    </form>
 
     </div>
 </body>

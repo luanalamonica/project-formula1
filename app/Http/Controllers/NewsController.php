@@ -17,7 +17,7 @@ class NewsController extends Controller
     {
         // dd($request);
         // Validação dos dados recebidos
-        $validatedData = $request->validate([
+        $request->validate([
             'titulo' => 'required|string|max:255',
             'tipo' => 'required|string|max:50',
             'descricao' => 'required|string',
@@ -26,10 +26,10 @@ class NewsController extends Controller
 
         // Cria um novo registro no banco de dados
         $content = news::create([
-            'titulo' => $validatedData['titulo'],
-            'tipo' => $validatedData['tipo'],
-            'descricao' => $validatedData['descricao'],
-            'link' => $validatedData['link'],
+            'titulo' => $request -> titulo,
+            'tipo' => $request -> tipo,
+            'descricao' => $request -> descricao,
+            'link' => $request -> link,
         ]);
 
         // Retorna uma resposta de sucesso
