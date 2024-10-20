@@ -59,28 +59,32 @@
 
             <a href="{{ url('/create_news') }}" class="btn">Add News</a>
 
-            <div class="news-item" >
-                <h2>Wolff shuts down further talk of Verstappen joining Mercedes as he insists team won't be ‘flirting outside’</h2>
+            @foreach ($noticias as $noticia)
+            <div class="news-item" data-id="{{ $noticia->id }}">
+                <h2>{{ $noticia->titulo }}</h2>
+                <h4>{{ $noticia->tipo }}</h4>
+                <h3>{{ $noticia->descricao }}</h3>
+                <a href="{{ $noticia->link }}" class="btn">For more</a>
 
-                <h4>News</h4>
+                <div class="actions">
+                    <!-- Botão Editar -->
+                    <a href="{{ route('noticias.edit', $noticia->id) }}" class="btn btn-primary">Editar</a>
 
-                <h3>Following Lewis Hamilton’s shock announcement back in February that he would make the switch to Ferrari for 2025,<br>
-                    speculation quickly mounted over who might fill his vacant seat at the Silver Arrows alongside Russell next season.</h3>
-
-                <h3>One of the names linked to the position was Max Verstappen, with Wolff making no secret of the fact that he would<br>
-                    be open to signing the Dutchman despite him holding a contract with Red Bull through to the end of 2028.</h3>
-
-                <h3>However, the rumours came to an end when Antonelli was announced as a Mercedes driver for 2025 during the Italian<br>
-                    Grand Prix weekend, and Wolff has confirmed that the squad will now be entirely focused on their new pairing<br>
-                    rather than trying to chase Verstappen.</h3>
-
-                <a href="https://www.formula1.com/en/latest/article/wolff-shuts-down-further-talk-of-verstappen-joining-mercedes-as-he-insists.2KH3G0D9lBZbEr4RfVfgAh" class="btn">For more</a>
+                    <!-- Botão Excluir -->
+                    <button class="btn btn-danger btn-delete-news" data-id="{{ $noticia->id }}">Excluir</button>
+                </div>
             </div>
 
+            @endforeach
+
         </div>
+
     </main>
 </body>
+
+
 <script>
+    // Observer para animação de entrada
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -90,8 +94,37 @@
             }
         });
     });
+
     const newsItems = document.querySelectorAll('.news-item');
     newsItems.forEach((item) => observer.observe(item));
+
+    $(document).ready(function() {
+        // Manipulação do clique no botão "Excluir" para notícias
+        $('.btn-delete-news').click(function(e) {
+            e.preventDefault(); // Prevenir o comportamento padrão do botão
+
+            var newsId = $(this).data('id'); // Obter o ID da notícia a ser excluída
+
+            if (confirm('Tem certeza que deseja excluir esta notícia?')) {
+                $.ajax({
+                    url: '/noticias/' + newsId, // URL para exclusão
+                    type: 'DELETE', // Método HTTP DELETE
+                    data: {
+                        _token: '{{ csrf_token() }}' // Necessário para autenticação da requisição
+                    },
+                    success: function(response) {
+                        // Remove a div correspondente à notícia excluída
+                        $('.news-item[data-id="' + newsId + '"]').remove();
+                        alert(response.success); // Exibe mensagem de sucesso
+                    },
+                    error: function(xhr) {
+                        console.error('Ocorreu um erro. Tente novamente.'); // Log de erro no console
+                        alert('Erro ao excluir a notícia.'); // Exibe mensagem de erro
+                    }
+                });
+            }
+        });
+    });
 </script>
 
-</html>
+</html> 

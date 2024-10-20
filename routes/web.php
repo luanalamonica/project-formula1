@@ -7,6 +7,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\PilotoController;
+use App\Http\Controllers\NoticiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,26 @@ Route::middleware('auth')->group(function () {
     Route::resource('pilotos', PilotoController::class);
 
     Route::get('/scores', [DriverController::class, 'buscar'])->name('scores');
+
+   // Rota para exibir a lista de notícias
+Route::get('/news', [NoticiaController::class, 'index'])->name('news');
+
+// Rota para criar uma nova notícia
+Route::get('/create_news', [NoticiaController::class, 'create'])->name('noticias.create');
+
+// Rota para armazenar a nova notícia
+Route::post('/store_news', [NoticiaController::class, 'salvarNoticia'])->name('noticias.store');
+
+// Rota para editar uma notícia específica
+Route::get('/noticias/{id}/edit', [NoticiaController::class, 'edit'])->name('noticias.edit');
+
+// Rota para atualizar uma notícia específica
+Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
+
+// Rota para excluir uma notícia específica
+Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
+
+Route::resource('noticias', NoticiaController::class);
 });
 
 Route::get('/register', function () {  
