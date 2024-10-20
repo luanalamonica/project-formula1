@@ -34,11 +34,11 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <!-- Remover ou comentar o link para o perfil -->
-                        <!-- <x-dropdown-link :href="route('profile.edit')">
+                         Remover ou comentar o link para o perfil
+                         <x-dropdown-link :href="route('profile.edit')">
                         {{ __('Profile') }}
                         </x-dropdown-link>
-                        -->
+                        
 
                         <!-- Manter o formulário de Logout -->
                         <form method="POST" action="{{ route('logout') }}">

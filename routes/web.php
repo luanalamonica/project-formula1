@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\EquipeController;
+use App\Http\Controllers\PilotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/scores', function () { 
         return view('scores');
     })->name('scores');
+
+    Route::get('/scores', [EquipeController::class, 'index'])->name('scores');
     
     Route::get('/news', function () {  
         return view('news');
@@ -61,8 +64,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/equipes/{id}/edit', [EquipeController::class, 'edit'])->name('equipes.edit');
     Route::put('/equipes/{id}', [EquipeController::class, 'update'])->name('equipes.update');
-    Route::delete('/equipes/{id}', [EquipeController::class, 'destroy'])->name('equipes.destroy');  
+    Route::delete('/equipes/{id}', [EquipeController::class, 'destroy'])->name('equipes.destroy');
 
+    Route::get('/pilotos', [PilotoController::class, 'index'])->name('pilotos.index');
+    Route::get('/pilotos/{id}/edit', [PilotoController::class, 'edit'])->name('piloto.edit');
+    Route::put('/pilotos/{id}', [PilotoController::class, 'update'])->name('piloto.update');
+    Route::delete('/pilotos/{id}', [PilotoController::class, 'destroy'])->name('piloto.destroy');
+    Route::resource('pilotos', PilotoController::class);
+
+    Route::get('/scores', [DriverController::class, 'buscar'])->name('scores');
 });
 
 Route::get('/register', function () {  

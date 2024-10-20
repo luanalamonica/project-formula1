@@ -66,50 +66,79 @@
     <h1 class="builders-title">Team Table</h1>
 
     <section class="builders-tabela-container tabelas-container">
-        @php
-            $lastTemporada = null; // Variável para controlar a última temporada exibida
-        @endphp
+    @php
+        $lastTemporada = null; // Variável para controlar a última temporada exibida
+    @endphp
 
-        @foreach ($equipes as $equipe)
-            @if ($lastTemporada != $equipe->temporada)
-                @if ($lastTemporada != null)
-                    </tbody>
-                    </table> <!-- Fecha a tabela da última temporada -->
-                @endif
-                <table>
-                    <caption>{{ $equipe->temporada }}</caption>
-                    <thead>
-                        <tr>
-                            <th>Position</th>
-                            <th>Builders</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+    @foreach ($equipes as $equipe)
+        @if ($lastTemporada != $equipe->temporada)
+            @if ($lastTemporada != null)
+                </tbody>
+                </table> <!-- Fecha a tabela da última temporada -->
             @endif
+            <table>
+                <caption>{{ $equipe->temporada }}</caption>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Builders</th>
+                        <th>Points</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+        @endif
 
-            <tr>
-                <td>{{ $equipe->posicao }}</td>
-                <td>{{ $equipe->nome }}</td>
-                <td>{{ $equipe->pontuacao }}</td>
-                <td>
-                    <!-- Botão Editar -->
-                    <a href="{{ route('equipes.edit', $equipe->id) }}" class="btn btn-primary">Editar</a>
+        <tr id="equipe-{{ $equipe->id }}">
+            <td>{{ $equipe->posicao }}</td>
+            <td>{{ $equipe->nome }}</td>
+            <td>{{ $equipe->pontuacao }}</td>
+            <td>
+                <!-- Botão Editar -->
+                <a href="{{ route('equipes.edit', $equipe->id) }}" class="btn btn-primary">Editar</a>
 
-                    <!-- Botão Excluir -->
-                    <form action="{{ route('equipes.destroy', $equipe->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</button>
-                    </form>
-                    
-                </td>
-            </tr>
+                <!-- Botão Excluir -->
+                <button class="btn btn-danger btn-delete" data-id="{{ $equipe->id }}">Excluir</button>
+            </td>
+        </tr>
 
-            @php
-                $lastTemporada = $equipe->temporada; // Atualiza a temporada atual
-            @endphp
-        @endforeach
+        @php
+            $lastTemporada = $equipe->temporada; // Atualiza a temporada atual
+        @endphp
+    @endforeach
+</section>
+
+<!-- Inclui o script para manipulação do AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Manipulação do clique no botão "Excluir"
+        $('.btn-delete').click(function(e) {
+            e.preventDefault(); // Prevenir o comportamento padrão do botão
+
+            var equipeId = $(this).data('id'); // Obter o ID da equipe a ser excluída
+
+            if (confirm('Tem certeza que deseja excluir esta equipe?')) {
+                $.ajax({
+                    url: '/equipes/' + equipeId, // URL para exclusão
+                    type: 'DELETE', // Método HTTP DELETE
+                    data: {
+                        _token: '{{ csrf_token() }}' // Necessário para autenticação da requisição
+                    },
+                    success: function(response) {
+                        // Remove a linha correspondente à equipe excluída da tabela
+                        $('#equipe-' + equipeId).remove();
+                        alert(response.success); // Exibe mensagem de sucesso
+                    },
+                    error: function(xhr) {
+                        alert('Ocorreu um erro. Tente novamente.');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 
         </tbody>
         </table> <!-- Fecha a última tabela -->
@@ -120,45 +149,82 @@
     <h1 class="drivers-title">Drivers Table</h1>
 
     <section class="drivers-tabela-container tabelas-container">
-        @php
-            $lastTemporada = null; // Variável para controlar a última temporada exibida
-        @endphp
+    @php
+        $lastTemporada = null; // Variável para controlar a última temporada exibida
+    @endphp
 
-        @foreach ($drivers as $driver)
-            @if ($lastTemporada != $driver->temporada)
-                @if ($lastTemporada != null)
-                    </tbody>
-                    </table> <!-- Fecha a tabela da última temporada -->
-                @endif
-                <table>
-                    <caption>{{ $driver->temporada }}</caption>
-                    <thead>
-                        <tr>
-                            <th>Position</th>
-                            <th>Drivers</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+    @foreach ($drivers as $driver)
+        @if ($lastTemporada != $driver->temporada)
+            @if ($lastTemporada != null)
+                </tbody>
+                </table> <!-- Fecha a tabela da última temporada -->
             @endif
+            <table>
+                <caption>{{ $driver->temporada }}</caption>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Drivers</th>
+                        <th>Points</th>
+                        <th>Actions</th> <!-- Adiciona uma coluna para Ações -->
+                    </tr>
+                </thead>
+                <tbody>
+        @endif
 
-            <tr>
-                <td>{{ $driver->posicao }}</td>
-                <td>{{ $driver->nome }}</td>
-                <td>{{ $driver->pontuacao }}</td>
-            </tr>
+        <tr id="driver-{{ $driver->id }}">
+            <td>{{ $driver->posicao }}</td>
+            <td>{{ $driver->nome }}</td>
+            <td>{{ $driver->pontuacao }}</td>
+            <td> <!-- Coluna para os botões -->
+                <!-- Botão Editar -->
+                <a href="{{ route('piloto.edit', $driver->id) }}" class="btn btn-primary">Editar</a>
 
-            @php
-                $lastTemporada = $driver->temporada; // Atualiza a temporada atual
-            @endphp
-        @endforeach
+                <!-- Botão Excluir -->
+                <button class="btn btn-danger btn-delete" data-id="{{ $driver->id }}">Excluir</button>
+            </td>
+        </tr>
 
-        </tbody>
-        </table> <!-- Fecha a última tabela -->
-    </section>
+        @php
+            $lastTemporada = $driver->temporada; // Atualiza a temporada atual
+        @endphp
+    @endforeach
+
+    </tbody>
+    </table> <!-- Fecha a última tabela -->
+</section>
+
+<!-- Inclui o script para manipulação do AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Manipulação do clique no botão "Excluir"
+        $('.btn-delete').click(function(e) {
+            e.preventDefault(); // Prevenir o comportamento padrão do botão
+
+            var driverId = $(this).data('id'); // Obter o ID do driver a ser excluído
+
+            if (confirm('Tem certeza que deseja excluir este piloto?')) {
+                $.ajax({
+                    url: '/pilotos/' + driverId, // URL para exclusão
+                    type: 'DELETE', // Método HTTP DELETE
+                    data: {
+                        _token: '{{ csrf_token() }}' // Necessário para autenticação da requisição
+                    },
+                    success: function(response) {
+                        // Remove a linha correspondente ao piloto excluído da tabela
+                        $('#driver-' + driverId).remove();
+                        alert(response.success); // Exibe mensagem de sucesso
+                    },
+                    error: function(xhr) {
+                        alert('Ocorreu um erro. Tente novamente.');
+                    }
+                });
+            }
+        });
+    });
+</script>
 
     <!--------------------------------------------------------------------------------------------------------------------->
-
 </body>
-
 </html>
