@@ -33,7 +33,7 @@ class TeamController extends Controller
         ]);
 
         // Retorna uma resposta de sucesso
-        return redirect()->route('scores.index')->with('success', 'Conteúdo salvo com sucesso!');
+        return redirect()->route('scores')->with('success', 'Conteúdo salvo com sucesso!');
     }
 
 }
