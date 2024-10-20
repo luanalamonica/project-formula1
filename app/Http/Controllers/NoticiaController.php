@@ -103,15 +103,14 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
 {
-    // Encontre a notícia pelo ID
     $noticia = News::find($id);
 
     if ($noticia) {
-        // Exclua a notícia
         $noticia->delete();
         return response()->json(['success' => 'Notícia excluída com sucesso!']);
     }
 
-    return response()->json(['error' => 'Notícia não encontrada!'], 404);
+    return response()->json(['error' => 'Notícia não encontrada.'], 404);
 }
+
 }

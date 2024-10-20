@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/news.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Formula 1</title>
 </head>
 
@@ -56,13 +57,12 @@
         </section>
 
         <div class="news-container">
-
             <a href="{{ url('/create_news') }}" class="btn">Add News</a>
 
             @foreach ($noticias as $noticia)
             <div class="news-item" data-id="{{ $noticia->id }}">
                 <h2>{{ $noticia->titulo }}</h2>
-                <h4>{{ $noticia->tipo }}</h4>
+                <h4>{{ $noticia->tipo }}</h4> <!-- Adiciona o tipo da notícia -->
                 <h3>{{ $noticia->descricao }}</h3>
                 <a href="{{ $noticia->link }}" class="btn">For more</a>
 
@@ -74,9 +74,7 @@
                     <button class="btn btn-danger btn-delete-news" data-id="{{ $noticia->id }}">Excluir</button>
                 </div>
             </div>
-
             @endforeach
-
         </div>
 
     </main>
@@ -125,6 +123,7 @@
             }
         });
     });
+
 </script>
 
-</html> 
+</html>
