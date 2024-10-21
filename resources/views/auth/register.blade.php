@@ -23,10 +23,10 @@
         <form action="{{ route('register') }}" method="POST">
             @csrf
             <h1>Register</h1>
-            <input name="email" type="text" placeholder="E-mail">
+            <input name="email" type="text" placeholder="email">
             <input name="password" type="password" placeholder="Password">
-            <input name="password_confirmation" type="password" placeholder="Confirmar senha">
-            <input name="telefone" type="text" placeholder="Telephone">
+            <input name="password_confirmation" type="password" placeholder="confirm password">
+            <input name="telefone" type="text" placeholder="telephone">
             <button type="submit">Enter</button>
             <div class="footer-links">
                 <a href="{{ url('/login') }}">Sign In</a>
