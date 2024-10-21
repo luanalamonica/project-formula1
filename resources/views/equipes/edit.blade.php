@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Equipe</title>
+    <title>Edit Team</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Editar Equipe</h1>
+        <h1>Edit Team</h1>
         <form action="{{ route('equipes.update', $equipe->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="form-group">
-                <label for="posicao">Posição</label>
+                <label for="posicao">Position</label>
                 <input type="text" name="posicao" class="form-control" value="{{ old('posicao', $equipe->posicao) }}" required>
             </div>
+            <br>
             <div class="form-group">
-                <label for="nome">Nome da Equipe</label>
+                <label for="nome">Name</label>
                 <input type="text" name="nome" class="form-control" value="{{ old('nome', $equipe->nome) }}" required>
             </div>
+            <br>
             <div class="form-group">
-                <label for="pontuacao">Pontuação</label>
+                <label for="pontuacao">Score</label>
                 <input type="number" name="pontuacao" class="form-control" value="{{ old('pontuacao', $equipe->pontuacao) }}" required>
             </div>
-            <button type="submit" class="btn btn-success">Atualizar</button>
+            <br>
+            <button type="submit" class="btn btn-success">to update</button>
         </form>
     </div>
 </body>

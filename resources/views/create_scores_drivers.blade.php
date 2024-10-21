@@ -20,25 +20,25 @@
         @csrf
         <div class="form-group row">
             <div class="col-6">
-                <label class="mb-2">Temporada da Piloto:</label>
-                <input type="text" class="form-control" placeholder="Ano da temporada" name="temporada">
+                <label class="mb-2">Pilot season:</label>
+                <input type="text" class="form-control" placeholder="year of the season" name="temporada">
             </div>
 
             <div class="col-6">
-                <label class="mb-2">Posição do Piloto:</label>
-                <input type="text" class="form-control" placeholder="Posição" name="posicao">
+                <label class="mb-2">Pilot position:</label>
+                <input type="text" class="form-control" placeholder="position" name="posicao">
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-6">
-                <label class="mb-2">Nome do Piloto:</label>
-                <input type="text" class="form-control" placeholder="Nome e Sobrenome" name="nome">
+                <label class="mb-2">Pilot name:</label>
+                <input type="text" class="form-control" placeholder="name" name="nome">
             </div>
 
             <div class="col-6">
-                <label class="mb-2">Pontuação do piloto:</label>
-                <input type="text" class="form-control" placeholder="Pontuação" name="pontuacao">
+                <label class="mb-2">Pilot score:</label>
+                <input type="text" class="form-control" placeholder="score" name="pontuacao">
             </div>
         </div>
 
@@ -48,7 +48,7 @@
         <hr style="background-color: #cc0000 !important;">
         <div class="row justify-content-center">
             <div class="col-6 text-center">
-                <button class="btn btn-primary w-100" style="background-color: #cc0000 !important; border:none !important;">Salvar Piloto</button>
+                <button class="btn btn-primary w-100" style="background-color: #cc0000 !important; border:none !important;">Save</button>
             </div>
         </div>
     </form>

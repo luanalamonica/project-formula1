@@ -55,7 +55,7 @@ class NoticiaController extends Controller
         ]);
 
         // Redireciona para a lista de notícias com uma mensagem de sucesso
-        return redirect()->route('news')->with('success', 'Conteúdo salvo com sucesso!');
+        return redirect()->route('news')->with('success', 'Content saved successfully!');
     }
 
     /**
@@ -92,7 +92,7 @@ class NoticiaController extends Controller
         $noticia->update($request->all());
 
         // Redireciona com uma mensagem de sucesso
-        return redirect()->route('news')->with('success', 'Notícia atualizada com sucesso!');
+        return redirect()->route('news')->with('success', 'News updated successfully!');
     }
 
     /**
@@ -107,10 +107,10 @@ class NoticiaController extends Controller
 
     if ($noticia) {
         $noticia->delete();
-        return response()->json(['success' => 'Notícia excluída com sucesso!']);
+        return response()->json(['success' => 'News successfully deleted!']);
     }
 
-    return response()->json(['error' => 'Notícia não encontrada.'], 404);
+    return response()->json(['error' => 'News not found.'], 404);
 }
 
 }

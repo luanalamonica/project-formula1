@@ -35,7 +35,7 @@ class EquipeController extends Controller
     $equipe->pontuacao = $request->input('pontuacao');
     $equipe->save();
 
-    return redirect('/scores')->with('success', 'Equipe atualizada com sucesso!'); // Redireciona para a página de scores
+    return redirect('/scores')->with('success', 'Team updated successfully!'); // Redireciona para a página de scores
 }
 
    // Método para excluir uma equipe
@@ -44,7 +44,7 @@ class EquipeController extends Controller
        $equipe = Equipe::findOrFail($id);
        $equipe->delete();
    
-       return response()->json(['success' => 'Equipe excluída com sucesso!']);
+       return response()->json(['success' => 'Team deleted successfully!']);
    }   
 }
 

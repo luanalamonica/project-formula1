@@ -33,6 +33,6 @@ class NewsController extends Controller
         ]);
 
         // Retorna uma resposta de sucesso
-        return redirect()->route('news')->with('success', 'Conteúdo salvo com sucesso!');
+        return redirect()->route('news')->with('success', 'Content saved successfully!');
     }
 }

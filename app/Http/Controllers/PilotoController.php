@@ -33,7 +33,7 @@ class PilotoController extends Controller
         $driver->pontuacao = $request->input('pontuacao');
         $driver->save();
 
-        return redirect()->route('scores')->with('success', 'Piloto atualizado com sucesso!');
+        return redirect()->route('scores')->with('success', 'Pilot updated successfully!');
     }
 
     public function destroy($id)
@@ -41,6 +41,6 @@ class PilotoController extends Controller
         $driver = Driver::findOrFail($id);
         $driver->delete();
 
-        return response()->json(['success' => 'Piloto excluído com sucesso!']);
+        return response()->json(['success' => 'Pilot successfully deleted!']);
     }
 }

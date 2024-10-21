@@ -20,25 +20,25 @@
         @csrf
         <div class="form-group row">
             <div class="col-6">
-                <label class="mb-2">Titulo da noticia:</label>
-                <input type="text" class="form-control" placeholder="Titulo da noticia" name="titulo">
+                <label class="mb-2">News title:</label>
+                <input type="text" class="form-control" placeholder="news title" name="titulo">
             </div>
 
             <div class="col-6">
-                <label class="mb-2">Tipo da noticia</label>
+                <label class="mb-2">Type:</label>
                 <input type="text" class="form-control" placeholder="News, video, ..." name="tipo">
             </div>
         </div>
 
         <div class="form-group row">
             <div class="col-6">
-                <label class="mb-2">Descrição:</label>
-                <input type="text" class="form-control" placeholder="Sobre a noticia" name="descricao">
+                <label class="mb-2">Description:</label>
+                <input type="text" class="form-control" placeholder="about the news" name="descricao">
             </div>
 
             <div class="col-6">
                 <label class="mb-2">Link:</label>
-                <input type="text" class="form-control" placeholder="Link da noticia" name="link">
+                <input type="text" class="form-control" placeholder="link" name="link">
             </div>
         </div>
 
@@ -48,7 +48,7 @@
         <hr style="background-color: #cc0000 !important;">
         <div class="row justify-content-center">
             <div class="col-6 text-center">
-                <button type="submit" class="btn btn-primary w-100" style="background-color: #cc0000 !important; border:none !important;">Salvar noticia</button>
+                <button type="submit" class="btn btn-primary w-100" style="background-color: #cc0000 !important; border:none !important;">Save</button>
             </div>
         </div>
     </form>

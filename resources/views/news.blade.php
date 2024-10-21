@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/news.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Formula 1</title>
+    <title>News - Formula 1</title>
 </head>
 
 <body>
@@ -68,10 +68,10 @@
 
                 <div class="actions">
                     <!-- Botão Editar -->
-                    <a href="{{ route('noticias.edit', $noticia->id) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ route('noticias.edit', $noticia->id) }}" class="btn btn-primary">Edit</a>
 
                     <!-- Botão Excluir -->
-                    <button class="btn btn-danger btn-delete-news" data-id="{{ $noticia->id }}">Excluir</button>
+                    <button class="btn btn-danger btn-delete-news" data-id="{{ $noticia->id }}">Delete</button>
                 </div>
             </div>
             @endforeach
@@ -103,7 +103,7 @@
 
             var newsId = $(this).data('id'); // Obter o ID da notícia a ser excluída
 
-            if (confirm('Tem certeza que deseja excluir esta notícia?')) {
+            if (confirm('Are you sure you want to delete this news?')) {
                 $.ajax({
                     url: '/noticias/' + newsId, // URL para exclusão
                     type: 'DELETE', // Método HTTP DELETE
@@ -113,17 +113,16 @@
                     success: function(response) {
                         // Remove a div correspondente à notícia excluída
                         $('.news-item[data-id="' + newsId + '"]').remove();
-                        alert(response.success); // Exibe mensagem de sucesso
+                        alert("News deleted successfully!"); // Exibe mensagem de sucesso 
                     },
                     error: function(xhr) {
-                        console.error('Ocorreu um erro. Tente novamente.'); // Log de erro no console
-                        alert('Erro ao excluir a notícia.'); // Exibe mensagem de erro
+                        console.error('An error has occurred. Please try again.'); // Log de erro no console
+                        alert('Error deleting the news.'); // Exibe mensagem de erro
                     }
                 });
             }
         });
     });
-
 </script>
 
 </html>

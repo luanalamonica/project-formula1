@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Piloto</title>
+    <title>Edit driver</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Editar Piloto</h1>
+        <h1>Edit Driver</h1>
         <form action="{{ route('piloto.update', $driver->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="form-group">
-                <label for="nome">Nome do Piloto</label>
+                <label for="nome">Name</label>
                 <input type="text" name="nome" class="form-control" value="{{ old('nome', $driver->nome) }}" required>
             </div>
+            <br>
             <div class="form-group">
-                <label for="posicao">Posição</label>
+                <label for="posicao">Position</label>
                 <input type="text" name="posicao" class="form-control" value="{{ old('posicao', $driver->posicao) }}" required>
             </div>
+            <br>
             <div class="form-group">
-                <label for="pontuacao">Pontuação</label>
+                <label for="pontuacao">Score</label>
                 <input type="number" name="pontuacao" class="form-control" value="{{ old('pontuacao', $driver->pontuacao) }}" required>
             </div>
-            <button type="submit" class="btn btn-success">Atualizar</button>
+            <br>
+            <button type="submit" class="btn btn-success">to update</button>
         </form>
     </div>
 </body>
