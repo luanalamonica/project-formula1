@@ -5,7 +5,7 @@ body {
     position: relative;
     overflow-x: hidden;
     background-color: #555;
-    background: linear-gradient(135deg, #00ff00 0%, #2e2e2e 50%, #b0b0b0 100%);
+    background: linear-gradient(135deg, #000000 0%, #363636 50%, #b0b0b0 100%);
 }
 
 header {
