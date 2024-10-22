@@ -136,7 +136,7 @@ Agora você pode usar o bot para obter notícias, informações sobre pilotos e 
 
 ### Interface do Site
 
-![Captura de Tela do Site 1](caminho/para/sua/imagem1.png)
+![Captura de Tela do Site 1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Home.png?raw=true)
 *Descrição da primeira captura de tela*
 
 ![Captura de Tela do Site 2](caminho/para/sua/imagem2.png)
