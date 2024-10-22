@@ -136,19 +136,29 @@ Agora você pode usar o bot para obter notícias, informações sobre pilotos e 
 
 ### Interface do Site
 
-![Captura de Tela do Site 1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Home.png?raw=true)
-*Descrição da primeira captura de tela*
+![Home](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Home.png?raw=true)
 
-![Captura de Tela do Site 2](caminho/para/sua/imagem2.png)
-*Descrição da segunda captura de tela*
+![Login](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Login.png?raw=true)
+
+![Register](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Register.png?raw=true)
+
+![News - pt1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/News.png?raw=true)
+
+![News - pt2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/News2.png?raw=true)
+
+![Scores - pt1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Scores.png?raw=true)
+
+![Scores - pt2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Scores2.png?raw=true)
 
 ### Interação com o Bot do Telegram
 
-![Captura de Tela do Telegram 1](caminho/para/sua/imagem_telegram1.png)
-*Descrição da primeira interação do bot no Telegram*
+![Welcome](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Welcome%20telegram.png?raw=true)
 
-![Captura de Tela do Telegram 2](caminho/para/sua/imagem_telegram2.png)
-*Descrição da segunda interação do bot no Telegram*
+![Option1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option1%20telegram.png?raw=true)
+
+![Option2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option2%20telegram.png?raw=true)
+
+![Option3](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option3%20telegram.png?raw=true)
 
 ## Contribuindo
 
