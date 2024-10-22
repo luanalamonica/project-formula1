@@ -84,7 +84,9 @@
                     <th>Position</th>
                     <th>Builders</th>
                     <th>Points</th>
+                    @if(auth()->check() && auth()->user()->is_admin)
                     <th>Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -139,7 +141,9 @@
                     <th>Position</th>
                     <th>Drivers</th>
                     <th>Points</th>
+                    @if(auth()->check() && auth()->user()->is_admin)
                     <th>Actions</th> <!-- Adiciona uma coluna para Ações -->
+                    @endif
                 </tr>
             </thead>
             <tbody>
