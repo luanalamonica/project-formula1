@@ -10,7 +10,6 @@ Este projeto é um bot do Telegram que fornece informações sobre a Fórmula 1,
 - [Testando o Bot](#testando-o-bot)
 - [Capturas de Tela](#capturas-de-tela)
 - [Contribuindo](#contribuindo)
-- [Licença](#licença)
 
 ## Pré-requisitos
 
