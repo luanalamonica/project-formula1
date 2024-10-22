@@ -36,35 +36,44 @@ Route::post('/webhook', function (Request $request) {
 
     // Aqui você pode implementar a lógica de resposta do bot
     if ($messageText === '/start') {
-        $replyMessage = "Bem-vindo! Você deseja receber informações sobre:\n1. Notícias\n2. Pilotos\n3. Equipes";
-        $telegramService->sendMessage($chatId, $replyMessage);
+        $replyMessage = "👋 Welcome!\nWould you like to receive information about:\n1. News 📰\n2. Drivers 🏎️\n3. Teams 🏁";
+        $telegramService->sendMessage($chatId, $replyMessage, 'Markdown'); // Enviando com formatação Markdown
     } elseif ($messageText == '1') {
         // Obter as notícias do banco de dados
         $noticias = News::all(); // Obtém todas as notícias
-        $replyMessage = "Aqui estão as últimas notícias da Fórmula 1:\n";
+        $replyMessage = "Here are the latest news from Formula 1:\n\n"; // Adicionando quebra de linha
         foreach ($noticias as $noticia) {
-            $replyMessage .= "- {$noticia->titulo}\n"; // Substitua 'titulo' pela coluna que você usa para armazenar o título da notícia
+            $replyMessage .= "📰 Title: {$noticia->titulo}\n"; 
+            $replyMessage .= "   Type: {$noticia->tipo}\n"; 
+            $replyMessage .= "   Description: {$noticia->descricao}\n"; 
+            $replyMessage .= "   Link: ({$noticia->link})\n\n"; 
         }
-        $telegramService->sendMessage($chatId, $replyMessage);
+        $telegramService->sendMessage($chatId, $replyMessage, 'Markdown');
     } elseif ($messageText == '2') {
         // Obter os pilotos do banco de dados
         $pilotos = Driver::all(); // Obtém todos os pilotos
-        $replyMessage = "Aqui estão os pilotos da Fórmula 1:\n";
+        $replyMessage = "Here are the drivers from Formula 1:\n\n"; // Adicionando quebra de linha
         foreach ($pilotos as $piloto) {
-            $replyMessage .= "- {$piloto->nome}\n"; // Verifique se a coluna 'nome' existe
+            $replyMessage .= "🏎️ Season: {$piloto->temporada}\n"; // Adicionando quebra de linha
+            $replyMessage .= "   Name: {$piloto->nome}\n";
+            $replyMessage .= "   Position: {$piloto->posicao}\n";
+            $replyMessage .= "   Points: {$piloto->pontuacao}\n";
         }
-        $telegramService->sendMessage($chatId, $replyMessage);
+        $telegramService->sendMessage($chatId, $replyMessage, 'Markdown');
     } elseif ($messageText == '3') {
         // Obter as equipes do banco de dados
         $equipes = Equipe::all(); // Obtém todas as equipes
-        $replyMessage = "Aqui estão as equipes da Fórmula 1:\n";
+        $replyMessage = "Here are the teams from Formula 1:\n\n"; // Adicionando quebra de linha
         foreach ($equipes as $equipe) {
-            $replyMessage .= "- {$equipe->nome}\n"; // Substitua 'nome' pela coluna que você usa para armazenar o nome da equipe
+            $replyMessage .= "🏁 Season: {$equipe->temporada}\n";
+            $replyMessage .= "   Position: {$equipe->posicao}\n";
+            $replyMessage .= "   Team Name: {$equipe->nome}\n";
+            $replyMessage .= "   Points: {$equipe->pontuacao}\n\n"; // Adicionando quebra de linha
         }
-        $telegramService->sendMessage($chatId, $replyMessage);
+        $telegramService->sendMessage($chatId, $replyMessage, 'Markdown');
     } else {
         // Mensagem padrão para opções não reconhecidas
-        $telegramService->sendMessage($chatId, "Desculpe, opção inválida. Por favor, escolha 1, 2 ou 3.");
+        $telegramService->sendMessage($chatId, "🚫 Sorry, invalid option. Please choose 1, 2, or 3.", 'Markdown');
     }
 
     return response()->json(['status' => 'success']);
