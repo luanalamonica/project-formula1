@@ -134,7 +134,9 @@ Agora você pode usar o bot para obter notícias, informações sobre pilotos e 
 
 ##
 
-##Gravação da Tela
+## Gravação da Tela
+
+##
 
 ## Capturas de Tela
 
