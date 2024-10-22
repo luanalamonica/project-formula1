@@ -36,16 +36,16 @@ Route::post('/webhook', function (Request $request) {
 
     // Aqui você pode implementar a lógica de resposta do bot
     if ($messageText === '/start') {
-        $replyMessage = "👋 Welcome!\nWould you like to receive information about:\n1. News 📰\n2. Drivers 🏎️\n3. Teams 🏁";
+        $replyMessage = "👋 Welcome!\n\nWould you like to receive information about:\n1. News 📰\n2. Drivers 🏎️\n3. Teams 🏁";
         $telegramService->sendMessage($chatId, $replyMessage, 'Markdown'); // Enviando com formatação Markdown
     } elseif ($messageText == '1') {
         // Obter as notícias do banco de dados
         $noticias = News::all(); // Obtém todas as notícias
         $replyMessage = "Here are the latest news from Formula 1:\n\n"; // Adicionando quebra de linha
         foreach ($noticias as $noticia) {
-            $replyMessage .= "📰 Title: {$noticia->titulo}\n"; 
-            $replyMessage .= "   Type: {$noticia->tipo}\n"; 
-            $replyMessage .= "   Description: {$noticia->descricao}\n"; 
+            $replyMessage .= "📰 Title: {$noticia->titulo}\n\n"; 
+            $replyMessage .= "   Type: {$noticia->tipo}\n\n"; 
+            $replyMessage .= "   Description: {$noticia->descricao}\n\n"; 
             $replyMessage .= "   Link: ({$noticia->link})\n\n"; 
         }
         $telegramService->sendMessage($chatId, $replyMessage, 'Markdown');
@@ -57,7 +57,7 @@ Route::post('/webhook', function (Request $request) {
             $replyMessage .= "🏎️ Season: {$piloto->temporada}\n"; // Adicionando quebra de linha
             $replyMessage .= "   Name: {$piloto->nome}\n";
             $replyMessage .= "   Position: {$piloto->posicao}\n";
-            $replyMessage .= "   Points: {$piloto->pontuacao}\n";
+            $replyMessage .= "   Points: {$piloto->pontuacao}\n\n";
         }
         $telegramService->sendMessage($chatId, $replyMessage, 'Markdown');
     } elseif ($messageText == '3') {
