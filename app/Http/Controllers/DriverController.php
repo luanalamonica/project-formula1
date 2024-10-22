@@ -34,7 +34,7 @@ class DriverController extends Controller
         ]);
 
         // Retorna uma resposta de sucesso
-        return redirect()->route('scores')->with('success', 'Content saved successfully!');
+        return redirect()->route('scores')->with('success', 'Conteúdo salvo com sucesso!');
     }
 
     public function buscar()

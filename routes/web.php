@@ -11,9 +11,9 @@ use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\UsuarioController;
 
 /*
-|--------------------------------------------------------------------------
+|---------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|---------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
@@ -25,44 +25,40 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+// Rotas que requerem autenticação e permissões administrativas
 Route::middleware(['auth', 'admin'])->group(function () {
     // Rotas para gerenciar notícias
-    Route::get('/create_news', [NoticiaController::class, 'create'])->name('noticias.create'); // Exibir o formulário para criar uma nova notícia
-    Route::post('/store_news', [NoticiaController::class, 'salvarNoticia'])->name('noticias.store'); // Salvar uma nova notícia
-    Route::get('/noticias/{id}/edit', [NoticiaController::class, 'edit'])->name('noticias.edit'); // Exibir o formulário para editar uma notícia específica
-    Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update'); // Atualizar uma notícia específica
-    Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy'); // Excluir uma notícia específica
+    Route::get('/create_news', [NoticiaController::class, 'create'])->name('noticias.create');
+    Route::post('/store_news', [NoticiaController::class, 'salvarNoticia'])->name('noticias.store');
+    Route::get('/noticias/{id}/edit', [NoticiaController::class, 'edit'])->name('noticias.edit');
+    Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
+    Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
 
     // Rotas para gerenciar equipes
-    Route::get('/equipes/{id}/edit', [EquipeController::class, 'edit'])->name('equipes.edit'); // Editar uma equipe
-    Route::put('/equipes/{id}', [EquipeController::class, 'update'])->name('equipes.update'); // Atualizar uma equipe
-    Route::delete('/equipes/{id}', [EquipeController::class, 'destroy'])->name('equipes.destroy'); // Excluir uma equipe
+    Route::get('/equipes/{id}/edit', [EquipeController::class, 'edit'])->name('equipes.edit');
+    Route::put('/equipes/{id}', [EquipeController::class, 'update'])->name('equipes.update');
+    Route::delete('/equipes/{id}', [EquipeController::class, 'destroy'])->name('equipes.destroy');
 
     // Rotas para gerenciar pilotos
-    Route::get('/pilotos/{id}/edit', [PilotoController::class, 'edit'])->name('piloto.edit'); // Editar um piloto
-    Route::put('/pilotos/{id}', [PilotoController::class, 'update'])->name('piloto.update'); // Atualizar um piloto
-    Route::delete('/pilotos/{id}', [PilotoController::class, 'destroy'])->name('piloto.destroy'); // Excluir um piloto
+    Route::get('/pilotos/{id}/edit', [PilotoController::class, 'edit'])->name('piloto.edit');
+    Route::put('/pilotos/{id}', [PilotoController::class, 'update'])->name('piloto.update');
+    Route::delete('/pilotos/{id}', [PilotoController::class, 'destroy'])->name('piloto.destroy');
 });
 
-
+// Rota do dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Rotas que requerem autenticação
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    
-    Route::get('/scores', function () { 
-        return view('scores');
-    })->name('scores');
 
-    Route::get('/scores', [EquipeController::class, 'index'])->name('scores');
-    
-    Route::get('/news', function () {  
-        return view('news');
-    })->name('news'); 
+    Route::get('/scores', [DriverController::class, 'buscar'])->name('scores'); // Corrigido: só uma rota para scores
+
+    Route::get('/news', [NoticiaController::class, 'index'])->name('news');
 
     Route::get('/create_news', function () {  
         return view('create_news');
@@ -82,15 +78,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/create_scores_team', [TeamController::class, 'salvarEquipe'])->name('create_scores_team');
 
-    Route::get('/scores', [DriverController::class, 'buscar']) ->name('scores.index');
-
-    Route::get('/scores', [DriverController::class, 'buscar'])->name('scores');
-
-    Route::get('/news', [NoticiaController::class, 'index'])->name('news');
-
-
+    Route::get('/drivers', [PilotoController::class, 'index'])->name('drivers.index');
 });
 
+// Rotas de registro e login
 Route::get('/register', function () {  
     return view('register');
 });
