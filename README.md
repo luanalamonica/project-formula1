@@ -155,10 +155,6 @@ Agora você pode usar o bot para obter notícias, informações sobre pilotos e 
 
 Contribuições são bem-vindas! Se você tiver sugestões para melhorias ou novos recursos, fique à vontade para fazer um fork do repositório e criar um pull request.
 
-## Licença
-
-Este projeto é licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ## Como Usar Este Template
 
 1. **Substitua `seuusuario`, `seu_nome_do_banco`, `seu_usuario_do_banco` e `sua_senha_do_banco`** com seu nome de usuário do GitHub, detalhes do banco de dados e outras configurações.
