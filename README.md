@@ -132,6 +132,8 @@ Abra o Telegram e procure seu bot pelo nome de usuário. Inicie uma conversa env
 
 Agora você pode usar o bot para obter notícias, informações sobre pilotos e informações sobre equipes. Siga as instruções para explorar as opções disponíveis.
 
+##Gravação da Tela
+
 ## Capturas de Tela
 
 ### Interface do Site
