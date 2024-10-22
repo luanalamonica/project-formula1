@@ -136,9 +136,15 @@ Agora você pode usar o bot para obter notícias, informações sobre pilotos e 
 
 ### Interface do Site
 
+Home
+
 ![Home](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Home.png?raw=true)
 
+Login
+
 ![Login](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Login.png?raw=true)
+
+Register
 
 ![Register](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Register.png?raw=true)
 
