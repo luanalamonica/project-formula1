@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Services\TelegramService;
 
 class RegisteredUserController extends Controller
 {
@@ -29,24 +30,37 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
-    {
-        // dd(request()->all());
-        // dd($request->all());
-        $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+{
+    // Validação dos dados do formulário
+    $request->validate([
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        'telefone' => ['required', 'string'], // Adicionando validação para o telefone
+    ]);
 
-        $user = User::create([
-            'email' => $request->email,
-            'senha' => Hash::make($request->password),
-            'telefone' => $request->telefone
-        ]);
+    // Criar o usuário
+    $user = User::create([
+        'email' => $request->email,
+        'senha' => Hash::make($request->password),
+        'telefone' => $request->telefone,
+    ]);
 
-        event(new Registered($user));
+    // Disparar o evento de registro
+    event(new Registered($user));
 
-        Auth::login($user);
+    // Autenticar o usuário
+    Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
-    }
+    // Enviar mensagem de boas-vindas via Telegram
+    $telegramService = new \App\Services\TelegramService(); // Asegure-se de que o namespace está correto
+    $chatId = $request->telefone; // NOTE: Aqui você deve ter o chat_id do Telegram de forma correta, não o telefone
+    $message = "Bem-vindo ao site da Fórmula 1! Por favor, selecione uma opção:\n1. Notícias\n2. Pilotos\n3. Equipes";
+
+    // Enviar mensagem de boas-vindas
+    $telegramService->sendMessage($chatId, $message);
+
+    // Redirecionar para a página inicial
+    return redirect(RouteServiceProvider::HOME);
+}
+
 }

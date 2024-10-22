@@ -59,8 +59,10 @@
         </section>
     </main>
 
+    @if(auth()->check() && auth()->user()->is_admin)
     <a href="{{ url('/create_scores_drivers') }}" class="btn">Add Scores Drivers</a>
     <a href="{{ url('/create_scores_team') }}" class="btn">Add Scores Team</a>
+    @endif
 
     <h1 class="builders-title">Team</h1>
 
@@ -94,10 +96,14 @@
                     <td>{{ $equipe->pontuacao }}</td>
                     <td>
                         <!-- Botão Editar -->
+                        @if(auth()->check() && auth()->user()->is_admin)
                         <a href="{{ route('equipes.edit', $equipe->id) }}" class="btn btn-primary">Edit</a>
+                        @endif
 
                         <!-- Botão Excluir -->
+                        @if(auth()->check() && auth()->user()->is_admin)
                         <button class="btn btn-danger btn-delete-equipe" data-id="{{ $equipe->id }}">Delete</button>
+                        @endif
                     </td>
                 </tr>
 
@@ -145,10 +151,14 @@
                     <td>{{ $driver->pontuacao }}</td>
                     <td> <!-- Coluna para os botões -->
                         <!-- Botão Editar -->
+                        @if(auth()->check() && auth()->user()->is_admin)
                         <a href="{{ route('piloto.edit', $driver->id) }}" class="btn btn-primary">Edit</a>
+                        @endif
 
                         <!-- Botão Excluir -->
+                        @if(auth()->check() && auth()->user()->is_admin)
                         <button class="btn btn-danger btn-delete-piloto" data-id="{{ $driver->id }}">Delete</button>
+                        @endif
 
                     </td>
                 </tr>

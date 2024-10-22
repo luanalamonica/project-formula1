@@ -58,7 +58,9 @@
         </section>
 
         <div class="news-container">
+        @if(auth()->check() && auth()->user()->is_admin)
             <a href="{{ url('/create_news') }}" class="btn">Add News</a>
+            @endif
 
             @foreach ($noticias as $noticia)
             <div class="news-item" data-id="{{ $noticia->id }}">
@@ -69,10 +71,14 @@
 
                 <div class="actions">
                     <!-- Botão Editar -->
+                    @if(auth()->check() && auth()->user()->is_admin)
                     <a href="{{ route('noticias.edit', $noticia->id) }}" class="btn btn-primary">Edit</a>
+                    @endif
 
                     <!-- Botão Excluir -->
+                    @if(auth()->check() && auth()->user()->is_admin)
                     <button class="btn btn-danger btn-delete-news" data-id="{{ $noticia->id }}">Delete</button>
+                    @endif
                 </div>
             </div>
             @endforeach

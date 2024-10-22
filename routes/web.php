@@ -8,6 +8,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\PilotoController;
 use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,26 @@ use App\Http\Controllers\NoticiaController;
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    // Rotas para gerenciar notícias
+    Route::get('/create_news', [NoticiaController::class, 'create'])->name('noticias.create'); // Exibir o formulário para criar uma nova notícia
+    Route::post('/store_news', [NoticiaController::class, 'salvarNoticia'])->name('noticias.store'); // Salvar uma nova notícia
+    Route::get('/noticias/{id}/edit', [NoticiaController::class, 'edit'])->name('noticias.edit'); // Exibir o formulário para editar uma notícia específica
+    Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update'); // Atualizar uma notícia específica
+    Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy'); // Excluir uma notícia específica
+
+    // Rotas para gerenciar equipes
+    Route::get('/equipes/{id}/edit', [EquipeController::class, 'edit'])->name('equipes.edit'); // Editar uma equipe
+    Route::put('/equipes/{id}', [EquipeController::class, 'update'])->name('equipes.update'); // Atualizar uma equipe
+    Route::delete('/equipes/{id}', [EquipeController::class, 'destroy'])->name('equipes.destroy'); // Excluir uma equipe
+
+    // Rotas para gerenciar pilotos
+    Route::get('/pilotos/{id}/edit', [PilotoController::class, 'edit'])->name('piloto.edit'); // Editar um piloto
+    Route::put('/pilotos/{id}', [PilotoController::class, 'update'])->name('piloto.update'); // Atualizar um piloto
+    Route::delete('/pilotos/{id}', [PilotoController::class, 'destroy'])->name('piloto.destroy'); // Excluir um piloto
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -63,37 +84,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/scores', [DriverController::class, 'buscar']) ->name('scores.index');
 
-    Route::get('/equipes/{id}/edit', [EquipeController::class, 'edit'])->name('equipes.edit');
-    Route::put('/equipes/{id}', [EquipeController::class, 'update'])->name('equipes.update');
-    Route::delete('/equipes/{id}', [EquipeController::class, 'destroy'])->name('equipes.destroy');
-
-    Route::get('/pilotos', [PilotoController::class, 'index'])->name('pilotos.index');
-    Route::get('/pilotos/{id}/edit', [PilotoController::class, 'edit'])->name('piloto.edit');
-    Route::put('/pilotos/{id}', [PilotoController::class, 'update'])->name('piloto.update');
-    Route::delete('/pilotos/{id}', [PilotoController::class, 'destroy'])->name('piloto.destroy');
-    Route::resource('pilotos', PilotoController::class);
-
     Route::get('/scores', [DriverController::class, 'buscar'])->name('scores');
 
-   // Rota para exibir a lista de notícias
-Route::get('/news', [NoticiaController::class, 'index'])->name('news');
+    Route::get('/news', [NoticiaController::class, 'index'])->name('news');
 
-// Rota para criar uma nova notícia
-Route::get('/create_news', [NoticiaController::class, 'create'])->name('noticias.create');
 
-// Rota para armazenar a nova notícia
-Route::post('/store_news', [NoticiaController::class, 'salvarNoticia'])->name('noticias.store');
-
-// Rota para editar uma notícia específica
-Route::get('/noticias/{id}/edit', [NoticiaController::class, 'edit'])->name('noticias.edit');
-
-// Rota para atualizar uma notícia específica
-Route::put('/noticias/{id}', [NoticiaController::class, 'update'])->name('noticias.update');
-
-// Rota para excluir uma notícia específica
-Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy'])->name('noticias.destroy');
-
-Route::resource('noticias', NoticiaController::class);
 });
 
 Route::get('/register', function () {  
