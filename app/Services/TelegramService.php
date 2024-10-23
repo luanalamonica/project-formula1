@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class TelegramService
 {
@@ -15,16 +16,26 @@ class TelegramService
         $this->token = env('TELEGRAM_BOT_TOKEN');
     }
 
-    public function sendMessage($chatId, $message)
+    // Adicionando o parâmetro $parseMode
+    public function sendMessage($chatId, $message, $parseMode = 'HTML')
     {
         $url = "https://api.telegram.org/bot{$this->token}/sendMessage";
-
-        $this->client->post($url, [
-            'json' => [
+    
+        try {
+            $response = $this->client->post($url, [
+                'json' => [
+                    'chat_id' => $chatId,
+                    'text' => $message,
+                    'parse_mode' => $parseMode,
+                ]
+            ]);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            // Log do erro para diagnóstico
+            Log::error("Erro ao enviar mensagem: {$e->getMessage()}", [
                 'chat_id' => $chatId,
-                'text' => $message,
-                'parse_mode' => 'HTML',
-            ]
-        ]);
+                'message' => $message,
+            ]);
+        }
     }
+    
 }
