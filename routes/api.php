@@ -41,34 +41,56 @@ Route::post('/webhook', function (Request $request) {
     } elseif ($messageText == '1') {
         // Obter as notícias do banco de dados
         $noticias = News::all(); // Obtém todas as notícias
-        $replyMessage = "Here are the latest news from Formula 1:\n\n"; // Adicionando quebra de linha
+
+        // Mensagem inicial
+        $telegramService->sendMessage($chatId, "Here are the latest news from Formula 1:", 'Markdown');
+
         foreach ($noticias as $noticia) {
-            $replyMessage .= "📰 Title: {$noticia->titulo}\n\n"; 
-            $replyMessage .= "   Type: {$noticia->tipo}\n\n"; 
-            $replyMessage .= "   Description: {$noticia->descricao}\n\n"; 
-            $replyMessage .= "   Link: ({$noticia->link})\n\n"; 
+            // Construindo a mensagem de cada notícia individualmente
+            $replyMessage = "📰 *Title:* {$noticia->titulo}\n\n";
+            $replyMessage .= "*Type:* {$noticia->tipo}\n\n";
+            $replyMessage .= "*Description:* {$noticia->descricao}\n\n";
+            $replyMessage .= "*Link:* [click here]({$noticia->link})"; // Link formatado em Markdown
+
+            // Enviando cada notícia como uma mensagem separada
+            $telegramService->sendMessage($chatId, $replyMessage, 'Markdown');
         }
-        $telegramService->sendMessage($chatId, $replyMessage, 'Markdown');
     } elseif ($messageText == '2') {
         // Obter os pilotos do banco de dados
-        $pilotos = Driver::all(); // Obtém todos os pilotos
+        $pilotos = Driver::orderBy('temporada')->get(); // Obtém todos os pilotos e ordena pela temporada
+        $groupedPilots = $pilotos->groupBy('temporada'); // Agrupando por temporada
+
         $replyMessage = "Here are the drivers from Formula 1:\n\n"; // Adicionando quebra de linha
-        foreach ($pilotos as $piloto) {
-            $replyMessage .= "🏎️ Season: {$piloto->temporada}\n"; // Adicionando quebra de linha
-            $replyMessage .= "   Name: {$piloto->nome}\n";
-            $replyMessage .= "   Position: {$piloto->posicao}\n";
-            $replyMessage .= "   Points: {$piloto->pontuacao}\n\n";
+        foreach ($groupedPilots as $temporada => $grupo) {
+            $replyMessage .= "🏎️ Season: {$temporada}\n"; // Mostrando a temporada uma vez
+            
+            // Ordenando os pilotos pela posição
+            $ordenedPilots = $grupo->sortBy('posicao');
+
+            foreach ($ordenedPilots as $piloto) {
+                $replyMessage .= "   Name: {$piloto->nome}\n";
+                $replyMessage .= "   Position: {$piloto->posicao}\n";
+                $replyMessage .= "   Points: {$piloto->pontuacao}\n\n";
+            }
         }
         $telegramService->sendMessage($chatId, $replyMessage, 'Markdown');
     } elseif ($messageText == '3') {
         // Obter as equipes do banco de dados
-        $equipes = Equipe::all(); // Obtém todas as equipes
+        $equipes = Equipe::orderBy('temporada')->get(); // Obtém todas as equipes e ordena pela temporada
+        $groupedTeams = $equipes->groupBy('temporada'); // Agrupando por temporada
+
         $replyMessage = "Here are the teams from Formula 1:\n\n"; // Adicionando quebra de linha
-        foreach ($equipes as $equipe) {
-            $replyMessage .= "🏁 Season: {$equipe->temporada}\n";
-            $replyMessage .= "   Position: {$equipe->posicao}\n";
-            $replyMessage .= "   Team Name: {$equipe->nome}\n";
-            $replyMessage .= "   Points: {$equipe->pontuacao}\n\n"; // Adicionando quebra de linha
+        foreach ($groupedTeams as $temporada => $grupo) {
+            $replyMessage .= "🏁 Season: {$temporada}\n"; // Mostrando a temporada uma vez
+            
+            // Ordenando as equipes pela posição
+            $ordenedTeams = $grupo->sortBy('posicao');
+
+            foreach ($ordenedTeams as $equipe) {
+                $replyMessage .= "   Position: {$equipe->posicao}\n";
+                $replyMessage .= "   Team Name: {$equipe->nome}\n";
+                $replyMessage .= "   Points: {$equipe->pontuacao}\n\n"; // Adicionando quebra de linha
+            }
         }
         $telegramService->sendMessage($chatId, $replyMessage, 'Markdown');
     } else {
