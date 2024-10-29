@@ -162,7 +162,7 @@ News - pt1
 
 News - pt2
 
-![News - pt2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/News2.png?raw=true)
+![News - pt2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/News2_new.png?raw=true)
 
 Scores - pt1
 
@@ -170,7 +170,7 @@ Scores - pt1
 
 Scores - pt2
 
-![Scores - pt2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Scores2.png?raw=true)
+![Scores - pt2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Scores2_new.png?raw=true)
 
 ### Interação com o Bot do Telegram
 
@@ -178,17 +178,29 @@ Welcome
 
 ![Welcome](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Welcome%20telegram.png?raw=true)
 
-Option 1
+Option 1 - pt1
 
-![Option1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option1%20telegram.png?raw=true)
+![Option1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option1%20pt1%20telegram_new.png?raw=true)
 
-Option 2
+Option 1 - pt2
 
-![Option2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option2%20telegram.png?raw=true)
+![Option1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option1%20pt2%20telegram_new.png?raw=true)
 
-Option 3
+Option 2 - pt1
 
-![Option3](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option3%20telegram.png?raw=true)
+![Option2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option2%20pt1%20telegram_new.png?raw=true)
+
+Option 2 - pt2
+
+![Option2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option2%20pt2%20telegram_new.png?raw=true)
+
+Option 3 - pt1
+
+![Option3](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option3%20pt1%20telegram_new.png?raw=true)
+
+Option 3 - pt2
+
+![Option3](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option3%20pt2%20telegram_new.png?raw=true)
 
 ## Contribuindo
 
