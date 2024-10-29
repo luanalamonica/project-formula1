@@ -16,11 +16,10 @@ class TelegramService
         $this->token = env('TELEGRAM_BOT_TOKEN');
     }
 
-    // Adicionando o parâmetro $parseMode
     public function sendMessage($chatId, $message, $parseMode = 'HTML')
     {
         $url = "https://api.telegram.org/bot{$this->token}/sendMessage";
-    
+
         try {
             $response = $this->client->post($url, [
                 'json' => [
@@ -30,12 +29,10 @@ class TelegramService
                 ]
             ]);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            // Log do erro para diagnóstico
             Log::error("Erro ao enviar mensagem: {$e->getMessage()}", [
                 'chat_id' => $chatId,
                 'message' => $message,
             ]);
         }
     }
-    
 }

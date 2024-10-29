@@ -65,17 +65,14 @@
             @foreach ($noticias as $noticia)
             <div class="news-item" data-id="{{ $noticia->id }}">
                 <h2>{{ $noticia->titulo }}</h2>
-                <h4>{{ $noticia->tipo }}</h4> <!-- Adiciona o tipo da notícia -->
+                <h4>{{ $noticia->tipo }}</h4> 
                 <h3>{{ $noticia->descricao }}</h3>
                 <a href="{{ $noticia->link }}" class="btn">For more</a>
 
                 <div class="actions">
-                    <!-- Botão Editar -->
                     @if(auth()->check() && auth()->user()->is_admin)
                     <a href="{{ route('noticias.edit', $noticia->id) }}" class="btn btn-primary">Edit</a>
                     @endif
-
-                    <!-- Botão Excluir -->
                     @if(auth()->check() && auth()->user()->is_admin)
                     <button class="btn btn-danger btn-delete-news" data-id="{{ $noticia->id }}">Delete</button>
                     @endif
@@ -89,7 +86,6 @@
 
 
 <script>
-    // Observer para animação de entrada
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -104,27 +100,25 @@
     newsItems.forEach((item) => observer.observe(item));
 
     $(document).ready(function() {
-        // Manipulação do clique no botão "Excluir" para notícias
         $('.btn-delete-news').click(function(e) {
-            e.preventDefault(); // Prevenir o comportamento padrão do botão
+            e.preventDefault(); 
 
-            var newsId = $(this).data('id'); // Obter o ID da notícia a ser excluída
+            var newsId = $(this).data('id'); 
 
             if (confirm('Are you sure you want to delete this news?')) {
                 $.ajax({
-                    url: '/noticias/' + newsId, // URL para exclusão
-                    type: 'DELETE', // Método HTTP DELETE
+                    url: '/noticias/' + newsId, 
+                    type: 'DELETE', 
                     data: {
-                        _token: '{{ csrf_token() }}' // Necessário para autenticação da requisição
+                        _token: '{{ csrf_token() }}' 
                     },
                     success: function(response) {
-                        // Remove a div correspondente à notícia excluída
                         $('.news-item[data-id="' + newsId + '"]').remove();
-                        alert("News deleted successfully!"); // Exibe mensagem de sucesso 
+                        alert("News deleted successfully!"); 
                     },
                     error: function(xhr) {
-                        console.error('An error has occurred. Please try again.'); // Log de erro no console
-                        alert('Error deleting the news.'); // Exibe mensagem de erro
+                        console.error('An error has occurred. Please try again.'); 
+                        alert('Error deleting the news.'); 
                     }
                 });
             }

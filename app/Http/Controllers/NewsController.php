@@ -16,7 +16,7 @@ class NewsController extends Controller
     public function salvarNoticia(Request $request)
     {
         // dd($request);
-        // Validação dos dados recebidos
+
         $request->validate([
             'titulo' => 'required|string|max:255',
             'tipo' => 'required|string|max:50',
@@ -24,15 +24,14 @@ class NewsController extends Controller
             'link' => 'required|string',
         ]);
 
-        // Cria um novo registro no banco de dados
+
         $content = news::create([
-            'titulo' => $request -> titulo,
-            'tipo' => $request -> tipo,
-            'descricao' => $request -> descricao,
-            'link' => $request -> link,
+            'titulo' => $request->titulo,
+            'tipo' => $request->tipo,
+            'descricao' => $request->descricao,
+            'link' => $request->link,
         ]);
 
-        // Retorna uma resposta de sucesso
         return redirect()->route('news')->with('success', 'Content saved successfully!');
     }
 }

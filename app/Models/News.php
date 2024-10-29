@@ -17,7 +17,7 @@ class News extends Model
     protected $table = 'news';
 
     /**
-     * Os atributos que podem ser atribuídos em massa.
+     * 
      *
      * @var array
      */
@@ -27,5 +27,4 @@ class News extends Model
         'descricao',
         'link',
     ];
-
 }

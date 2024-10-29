@@ -14,10 +14,10 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        // Recuperar todas as notícias do banco de dados
+
         $noticias = News::all();
 
-        return view('news', compact('noticias')); // Passa as notícias para a view
+        return view('news', compact('noticias'));
     }
 
     /**
@@ -27,7 +27,7 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        return view('create_news'); // Retorna a view para criar notícias
+        return view('create_news');
     }
 
     /**
@@ -38,7 +38,7 @@ class NoticiaController extends Controller
      */
     public function salvarNoticia(Request $request)
     {
-        // Validação dos dados recebidos
+
         $request->validate([
             'titulo' => 'required|string|max:255',
             'tipo' => 'required|string|max:50',
@@ -46,7 +46,7 @@ class NoticiaController extends Controller
             'link' => 'required|string',
         ]);
 
-        // Cria um novo registro no banco de dados
+
         News::create([
             'titulo' => $request->titulo,
             'tipo' => $request->tipo,
@@ -54,7 +54,6 @@ class NoticiaController extends Controller
             'link' => $request->link,
         ]);
 
-        // Redireciona para a lista de notícias com uma mensagem de sucesso
         return redirect()->route('news')->with('success', 'Content saved successfully!');
     }
 
@@ -66,8 +65,8 @@ class NoticiaController extends Controller
      */
     public function edit($id)
     {
-        $noticia = News::findOrFail($id); // Busca a notícia pelo ID
-        return view('edit_news', compact('noticia')); // Retorna a view para editar a notícia
+        $noticia = News::findOrFail($id);
+        return view('edit_news', compact('noticia'));
     }
 
     /**
@@ -79,7 +78,7 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validação dos dados recebidos
+
         $request->validate([
             'titulo' => 'required|string|max:255',
             'tipo' => 'required|string|max:50',
@@ -87,11 +86,11 @@ class NoticiaController extends Controller
             'link' => 'required|string',
         ]);
 
-        // Busca a notícia e atualiza os dados
+
         $noticia = News::findOrFail($id);
         $noticia->update($request->all());
 
-        // Redireciona com uma mensagem de sucesso
+
         return redirect()->route('news')->with('success', 'News updated successfully!');
     }
 
@@ -102,15 +101,14 @@ class NoticiaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-{
-    $noticia = News::find($id);
+    {
+        $noticia = News::find($id);
 
-    if ($noticia) {
-        $noticia->delete();
-        return response()->json(['success' => 'News successfully deleted!']);
+        if ($noticia) {
+            $noticia->delete();
+            return response()->json(['success' => 'News successfully deleted!']);
+        }
+
+        return response()->json(['error' => 'News not found.'], 404);
     }
-
-    return response()->json(['error' => 'News not found.'], 404);
-}
-
 }

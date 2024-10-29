@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,13 +20,13 @@
         <form action="{{ route('noticias.update', $noticia->id) }}" method="POST">
             @csrf
             @method('PUT')
-            
+
             <div class="form-group row">
                 <div class="col-6">
                     <label class="mb-2" for="titulo">Title:</label>
                     <input type="text" name="titulo" class="form-control" value="{{ old('titulo', $noticia->titulo) }}" required>
                 </div>
-                
+
                 <div class="col-6">
                     <label class="mb-2" for="tipo">Type:</label>
                     <input type="text" name="tipo" class="form-control" value="{{ old('tipo', $noticia->tipo) }}" required>

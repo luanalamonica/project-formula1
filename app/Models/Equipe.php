@@ -17,7 +17,7 @@ class Equipe extends Model
     protected $table = 'team';
 
     /**
-     * Os atributos que podem ser atribuídos em massa.
+     * 
      *
      * @var array
      */

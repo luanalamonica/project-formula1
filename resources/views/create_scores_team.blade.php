@@ -17,41 +17,41 @@
         </div>
         <hr style="background-color: #FF6900 !important;">
 
-    <form action="{{ route('create_scores_team') }}" method="POST">
-    @csrf   
-        <div class="form-group row">
-            <div class="col-6">
-                <label class="mb-2">Team season:</label>
-                <input type="text" class="form-control" placeholder="team year" name="temporada">
+        <form action="{{ route('create_scores_team') }}" method="POST">
+            @csrf
+            <div class="form-group row">
+                <div class="col-6">
+                    <label class="mb-2">Team season:</label>
+                    <input type="text" class="form-control" placeholder="team year" name="temporada">
+                </div>
+
+                <div class="col-6">
+                    <label class="mb-2">Team position:</label>
+                    <input type="text" class="form-control" placeholder="position" name="posicao">
+                </div>
             </div>
 
-            <div class="col-6">
-                <label class="mb-2">Team position:</label>
-                <input type="text" class="form-control" placeholder="position" name="posicao">
-            </div>
-        </div>
+            <div class="form-group row">
+                <div class="col-6">
+                    <label class="mb-2">Team name:</label>
+                    <input type="text" class="form-control" placeholder="name" name="nome">
+                </div>
 
-        <div class="form-group row">
-            <div class="col-6">
-                <label class="mb-2">Team name:</label>
-                <input type="text" class="form-control" placeholder="name" name="nome">
+                <div class="col-6">
+                    <label class="mb-2">Team score:</label>
+                    <input type="text" class="form-control" placeholder="Score" name="pontuacao">
+                </div>
             </div>
 
-            <div class="col-6">
-                <label class="mb-2">Team score:</label>
-                <input type="text" class="form-control" placeholder="Score" name="pontuacao">
+            <div class="form-group row">
+                <div id="tagContainer"></div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <div id="tagContainer"></div>
-        </div>
-        <hr style="background-color: #cc0000 !important;">
-        <div class="row justify-content-center">
-            <div class="col-6 text-center">
-                <button class="btn btn-primary w-100" style="background-color: #cc0000 !important; border:none !important;">Save</button>
+            <hr style="background-color: #cc0000 !important;">
+            <div class="row justify-content-center">
+                <div class="col-6 text-center">
+                    <button class="btn btn-primary w-100" style="background-color: #cc0000 !important; border:none !important;">Save</button>
+                </div>
             </div>
-        </div>
 
         </form>
 

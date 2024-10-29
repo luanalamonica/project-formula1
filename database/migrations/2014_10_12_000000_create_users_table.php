@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('senha');
             $table->string('telefone');
             $table->boolean('is_admin')->default(false);
-            $table->timestamps(); 
+            $table->timestamps();
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios'); 
+        Schema::dropIfExists('usuarios');
     }
 };

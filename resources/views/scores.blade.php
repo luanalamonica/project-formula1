@@ -75,7 +75,7 @@
         @if ($lastTemporada != $equipe->temporada)
         @if ($lastTemporada != null)
         </tbody>
-        </table> <!-- Fecha a tabela da última temporada -->
+        </table>
         @endif
         <table>
             <caption>{{ $equipe->temporada }}</caption>
@@ -97,12 +97,10 @@
                     <td>{{ $equipe->nome }}</td>
                     <td>{{ $equipe->pontuacao }}</td>
                     <td>
-                        <!-- Botão Editar -->
                         @if(auth()->check() && auth()->user()->is_admin)
                         <a href="{{ route('equipes.edit', $equipe->id) }}" class="btn btn-primary">Edit</a>
                         @endif
 
-                        <!-- Botão Excluir -->
                         @if(auth()->check() && auth()->user()->is_admin)
                         <button class="btn btn-danger btn-delete-equipe" data-id="{{ $equipe->id }}">Delete</button>
                         @endif
@@ -116,7 +114,7 @@
     </section>
 
     </tbody>
-    </table> <!-- Fecha a última tabela -->
+    </table>
     </section>
 
     <!--------------------------------------------------------------------------------------------------------------------->
@@ -132,7 +130,7 @@
         @if ($lastTemporada != $driver->temporada)
         @if ($lastTemporada != null)
         </tbody>
-        </table> <!-- Fecha a tabela da última temporada -->
+        </table>
         @endif
         <table>
             <caption>{{ $driver->temporada }}</caption>
@@ -142,7 +140,7 @@
                     <th>Drivers</th>
                     <th>Points</th>
                     @if(auth()->check() && auth()->user()->is_admin)
-                    <th>Actions</th> <!-- Adiciona uma coluna para Ações -->
+                    <th>Actions</th>
                     @endif
                 </tr>
             </thead>
@@ -153,13 +151,13 @@
                     <td>{{ $driver->posicao }}</td>
                     <td>{{ $driver->nome }}</td>
                     <td>{{ $driver->pontuacao }}</td>
-                    <td> <!-- Coluna para os botões -->
-                        <!-- Botão Editar -->
+                    <td>
+
                         @if(auth()->check() && auth()->user()->is_admin)
                         <a href="{{ route('piloto.edit', $driver->id) }}" class="btn btn-primary">Edit</a>
                         @endif
 
-                        <!-- Botão Excluir -->
+
                         @if(auth()->check() && auth()->user()->is_admin)
                         <button class="btn btn-danger btn-delete-piloto" data-id="{{ $driver->id }}">Delete</button>
                         @endif
@@ -173,60 +171,56 @@
                 @endforeach
 
             </tbody>
-        </table> <!-- Fecha a última tabela -->
+        </table>
     </section>
 
-    <!-- Inclua o jQuery se ainda não estiver incluído -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Seu código JavaScript para manipulação de exclusão -->
     <script>
         $(document).ready(function() {
-            // Manipulação do clique no botão "Excluir" para equipes
             $('.btn-delete-equipe').click(function(e) {
-                e.preventDefault(); // Prevenir o comportamento padrão do botão
+                e.preventDefault();
+                o
 
-                var equipeId = $(this).data('id'); // Obter o ID da equipe a ser excluída
+                var equipeId = $(this).data('id');
 
                 if (confirm('Are you sure you want to delete this team?')) {
                     $.ajax({
-                        url: '/equipes/' + equipeId, // URL para exclusão
-                        type: 'DELETE', // Método HTTP DELETE
+                        url: '/equipes/' + equipeId,
+                        type: 'DELETE',
                         data: {
-                            _token: '{{ csrf_token() }}' // Necessário para autenticação da requisição
+                            _token: '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            // Remove the corresponding row for the deleted team from the table
+
                             $('#equipe-' + equipeId).remove();
-                            alert("Team deleted successfully!"); // Displays success message in English
+                            alert("Team deleted successfully!");
                         },
                         error: function(xhr) {
-                            console.error('An error has occurred. Please try again.'); // Log de erro no console
+                            console.error('An error has occurred. Please try again.');
                         }
                     });
                 }
             });
 
-            // Manipulação do clique no botão "Excluir" para pilotos
             $('.btn-delete-piloto').click(function(e) {
-                e.preventDefault(); // Prevenir o comportamento padrão do botão
+                e.preventDefault();
 
-                var driverId = $(this).data('id'); // Obter o ID do driver a ser excluído
+                var driverId = $(this).data('id');
 
                 if (confirm('Are you sure you want to delete this driver?')) {
                     $.ajax({
-                        url: '/pilotos/' + driverId, // URL para exclusão
-                        type: 'DELETE', // Método HTTP DELETE
+                        url: '/pilotos/' + driverId,
+                        type: 'DELETE',
                         data: {
-                            _token: '{{ csrf_token() }}' // Necessário para autenticação da requisição
+                            _token: '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            // Remove the corresponding row for the deleted driver from the table
                             $('#driver-' + driverId).remove();
-                            alert("Driver deleted successfully!"); // Displays success message in English
+                            alert("Driver deleted successfully!");
                         },
                         error: function(xhr) {
-                            console.error('An error has occurred. Please try again.'); // Log de erro no console
+                            console.error('An error has occurred. Please try again.');
                         }
                     });
                 }
@@ -234,7 +228,6 @@
         });
     </script>
 
-    <!--------------------------------------------------------------------------------------------------------------------->
 </body>
 
 </html>

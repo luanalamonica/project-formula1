@@ -17,7 +17,7 @@ class Driver extends Model
     protected $table = 'driver';
 
     /**
-     * Os atributos que podem ser atribuídos em massa.
+     *
      *
      * @var array
      */

@@ -17,42 +17,42 @@
         </div>
         <hr style="background-color: #FF6900 !important;">
 
-    <form action="{{ route('create_news') }}" method="POST">
-        @csrf
-        <div class="form-group row">
-            <div class="col-6">
-                <label class="mb-2">News title:</label>
-                <input type="text" class="form-control" placeholder="news title" name="titulo">
+        <form action="{{ route('create_news') }}" method="POST">
+            @csrf
+            <div class="form-group row">
+                <div class="col-6">
+                    <label class="mb-2">News title:</label>
+                    <input type="text" class="form-control" placeholder="news title" name="titulo">
+                </div>
+
+                <div class="col-6">
+                    <label class="mb-2">Type:</label>
+                    <input type="text" class="form-control" placeholder="News, video, ..." name="tipo">
+                </div>
             </div>
 
-            <div class="col-6">
-                <label class="mb-2">Type:</label>
-                <input type="text" class="form-control" placeholder="News, video, ..." name="tipo">
-            </div>
-        </div>
+            <div class="form-group row">
+                <div class="col-6">
+                    <label class="mb-2">Description:</label>
+                    <input type="text" class="form-control" placeholder="about the news" name="descricao">
+                </div>
 
-        <div class="form-group row">
-            <div class="col-6">
-                <label class="mb-2">Description:</label>
-                <input type="text" class="form-control" placeholder="about the news" name="descricao">
+                <div class="col-6">
+                    <label class="mb-2">Link:</label>
+                    <input type="text" class="form-control" placeholder="link" name="link">
+                </div>
             </div>
 
-            <div class="col-6">
-                <label class="mb-2">Link:</label>
-                <input type="text" class="form-control" placeholder="link" name="link">
+            <div class="form-group row">
+                <div id="tagContainer"></div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <div id="tagContainer"></div>
-        </div>
-        <hr style="background-color: #cc0000 !important;">
-        <div class="row justify-content-center">
-            <div class="col-6 text-center">
-                <button type="submit" class="btn btn-primary w-100" style="background-color: #cc0000 !important; border:none !important;">Save</button>
+            <hr style="background-color: #cc0000 !important;">
+            <div class="row justify-content-center">
+                <div class="col-6 text-center">
+                    <button type="submit" class="btn btn-primary w-100" style="background-color: #cc0000 !important; border:none !important;">Save</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
     </div>
 </body>

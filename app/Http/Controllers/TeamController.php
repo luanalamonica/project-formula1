@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
-     /**
+    /**
      * Armazena o conteúdo no banco de dados.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -16,7 +16,7 @@ class TeamController extends Controller
     public function salvarEquipe(Request $request)
     {
         // dd($request);
-        // Validação dos dados recebidos
+
         $request->validate([
             'temporada' => 'required|string|max:255',
             'nome' => 'required|string|max:50',
@@ -24,16 +24,14 @@ class TeamController extends Controller
             'pontuacao' => 'required|string',
         ]);
 
-        // Cria um novo registro no banco de dados
+
         $content = Equipe::create([
-            'temporada' => $request -> temporada,
-            'nome' => $request -> nome,
-            'posicao' => $request -> posicao,
-            'pontuacao' => $request -> pontuacao,
+            'temporada' => $request->temporada,
+            'nome' => $request->nome,
+            'posicao' => $request->posicao,
+            'pontuacao' => $request->pontuacao,
         ]);
 
-        // Retorna uma resposta de sucesso
         return redirect()->route('scores')->with('success', 'Content saved successfully!');
     }
-
 }
