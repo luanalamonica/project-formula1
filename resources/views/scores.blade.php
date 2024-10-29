@@ -107,6 +107,7 @@
                     </td>
                 </tr>
 
+
                 @php
                 $lastTemporada = $equipe->temporada; // Atualiza a temporada atual
                 @endphp
@@ -177,56 +178,54 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('.btn-delete-equipe').click(function(e) {
-                e.preventDefault();
-                o
+    $(document).ready(function() {
+        $('.btn-delete-equipe').click(function(e) {
+            e.preventDefault();
+            var equipeId = $(this).data('id');
 
-                var equipeId = $(this).data('id');
-
-                if (confirm('Are you sure you want to delete this team?')) {
-                    $.ajax({
-                        url: '/equipes/' + equipeId,
-                        type: 'DELETE',
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-
-                            $('#equipe-' + equipeId).remove();
-                            alert("Team deleted successfully!");
-                        },
-                        error: function(xhr) {
-                            console.error('An error has occurred. Please try again.');
-                        }
-                    });
-                }
-            });
-
-            $('.btn-delete-piloto').click(function(e) {
-                e.preventDefault();
-
-                var driverId = $(this).data('id');
-
-                if (confirm('Are you sure you want to delete this driver?')) {
-                    $.ajax({
-                        url: '/pilotos/' + driverId,
-                        type: 'DELETE',
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-                            $('#driver-' + driverId).remove();
-                            alert("Driver deleted successfully!");
-                        },
-                        error: function(xhr) {
-                            console.error('An error has occurred. Please try again.');
-                        }
-                    });
-                }
-            });
+            if (confirm('Are you sure you want to delete this team?')) {
+                $.ajax({
+                    url: '/equipes/' + equipeId,
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#equipe-' + equipeId).remove(); // Remove a linha correspondente da tabela
+                        alert(response.success); // Exibe a mensagem de sucesso retornada
+                    },
+                    error: function(xhr) {
+                        console.error('An error has occurred. Please try again.', xhr);
+                        alert("An error has occurred. Please try again."); // Mensagem de erro para o usuário
+                    }
+                });
+            }
         });
-    </script>
+
+        $('.btn-delete-piloto').click(function(e) {
+            e.preventDefault();
+            var driverId = $(this).data('id');
+
+            if (confirm('Are you sure you want to delete this driver?')) {
+                $.ajax({
+                    url: '/pilotos/' + driverId,
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#driver-' + driverId).remove();
+                        alert("Driver deleted successfully!");
+                    },
+                    error: function(xhr) {
+                        console.error('An error has occurred. Please try again.');
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 
 </body>
 

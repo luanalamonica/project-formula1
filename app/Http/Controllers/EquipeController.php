@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EquipeController extends Controller
 {
@@ -40,10 +41,13 @@ class EquipeController extends Controller
     }
 
     public function destroy($id)
-    {
-        $equipe = Equipe::findOrFail($id);
-        $equipe->delete();
+{
+    Log::info("Attempting to delete team with ID: $id");
+    $equipe = Equipe::findOrFail($id);
+    $equipe->delete();
+    Log::info("Team deleted successfully with ID: $id");
 
-        return response()->json(['success' => 'Team deleted successfully!']);
-    }
+    return response()->json(['success' => 'Team deleted successfully!']);
+}
+
 }
