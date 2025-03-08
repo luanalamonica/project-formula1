@@ -136,7 +136,7 @@ Agora você pode usar o bot para obter notícias, informações sobre pilotos e 
 
 ## Gravação da Tela
 
-![Demonstração do Projeto Formula 1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Projeto%20Formula%201.gif?raw=true)
+![Demonstração do Projeto Formula 1](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/Projeto%20Formula%201.gif?raw=true)
 
 ##
 
