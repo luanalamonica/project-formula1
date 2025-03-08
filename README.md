@@ -140,67 +140,67 @@ Agora você pode usar o bot para obter notícias, informações sobre pilotos e 
 
 ##
 
-## Capturas de Tela
+## Galeria de Fotos
 
 ### Interface do Site
 
 Home
 
-![Home](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Home.png?raw=true)
+![Home](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/Home.png?raw=true)
 
 Login
 
-![Login](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Login.png?raw=true)
+![Login](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/Login.png?raw=true)
 
 Register
 
-![Register](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Register.png?raw=true)
+![Register](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/Register.png?raw=true)
 
 News - pt1
 
-![News - pt1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/News.png?raw=true)
+![News - pt1](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/News.png?raw=true)
 
 News - pt2
 
-![News - pt2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/News2_new.png?raw=true)
+![News - pt2](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/News2_new.png?raw=true)
 
 Scores - pt1
 
-![Scores - pt1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Scores.png?raw=true)
+![Scores - pt1](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/Scores.png?raw=true)
 
 Scores - pt2
 
-![Scores - pt2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Scores2_new.png?raw=true)
+![Scores - pt2](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/Scores2_new.png?raw=true)
 
 ### Interação com o Bot do Telegram
 
 Welcome
 
-![Welcome](https://github.com/luanalamonica/Fotos_Formula1/blob/main/Welcome%20telegram.png?raw=true)
+![Welcome](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/Welcome%20telegram.png?raw=true)
 
 Option 1 - pt1
 
-![Option1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option1%20pt1%20telegram_new.png?raw=true)
+![Option1](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/option1%20pt1%20telegram_new.png?raw=true)
 
 Option 1 - pt2
 
-![Option1](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option1%20pt2%20telegram_new.png?raw=true)
+![Option1](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/option1%20pt2%20telegram_new.png?raw=true)
 
 Option 2 - pt1
 
-![Option2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option2%20pt1%20telegram_new.png?raw=true)
+![Option2](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/option2%20pt1%20telegram_new.png?raw=true)
 
 Option 2 - pt2
 
-![Option2](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option2%20pt2%20telegram_new.png?raw=true)
+![Option2](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/option2%20pt2%20telegram_new.png?raw=true)
 
 Option 3 - pt1
 
-![Option3](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option3%20pt1%20telegram_new.png?raw=true)
+![Option3](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/option3%20pt1%20telegram_new.png?raw=true)
 
 Option 3 - pt2
 
-![Option3](https://github.com/luanalamonica/Fotos_Formula1/blob/main/option3%20pt2%20telegram_new.png?raw=true)
+![Option3](https://github.com/luanalamonica/Fotos-Projeto-Formula1/blob/main/option3%20pt2%20telegram_new.png?raw=true)
 
 ## Contribuindo
 
